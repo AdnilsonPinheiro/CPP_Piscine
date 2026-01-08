@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 18:44:17 by adpinhei          #+#    #+#              #
-#    Updated: 2026/01/06 17:34:46 by adpinhei         ###   ########.fr        #
+#    Updated: 2026/01/08 18:00:35 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME := awesomePhoneBook
 CC := c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
+
+vpath %.h includes
 
 BUILD_DIR := build
 
