@@ -1,18 +1,24 @@
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+# include <iomanip>
+# include <string>
 
-# define MAX_CONTACTS 9
+# define MAX_CONTACTS 8
+# define COLUMN_WIDTH 10
 
 class PhoneBook{
 	private:
 		Contact	contacts[MAX_CONTACTS];
-		int		num_contacts;
+		int		index;
+		int		lastContact;
+
 	public:
-		void	add(Contact);
-		void	search();
-		PhoneBook(Contact new_contact);
+		void				setNewContact(const Contact &new_contact);
+		const Contact		&getContactData(int index) const;
+
+		PhoneBook();
 		~PhoneBook();
 };
 
