@@ -18,11 +18,11 @@ class Contact{
 		std::string	getSecret() const;
 		std::string	getNumber() const;
 
-		void		setFirstName(const std::string &first_name);
-		void		setLastName(const std::string &last_name);
-		void		setNickName(const std::string &nick_name);
-		void		setSecret(const std::string &secret);
-		void		setNumber(const std::string &number);
+		int			setFirstName();
+		int			setLastName();
+		int			setNickName();
+		int			setSecret();
+		int			setNumber();
 		
 		Contact();
 		~Contact();

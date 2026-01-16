@@ -17,6 +17,7 @@ class PhoneBook{
 	public:
 		void				setNewContact(const Contact &new_contact);
 		const Contact		&getContactData(int index) const;
+		int					getCount() const;
 
 		PhoneBook();
 		~PhoneBook();

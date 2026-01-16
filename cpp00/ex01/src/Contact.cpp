@@ -1,4 +1,4 @@
-#include "Contact.hpp"
+#include "../includes/Contact.hpp"
 
 /*Getter Functions*/
 std::string	Contact::getFirstName() const{
@@ -22,30 +22,60 @@ std::string	Contact::getNumber() const{
 }
 
 /*Setter Functions*/
-void	Contact::setFirstName(const std::string &first_name){
-	this->first_name = first_name;
+int	Contact::setFirstName(){
+	std::string	input;
+	std::cout << "Please enter the contact's first name" << std::endl;
+	std::getline(std::cin, input);
+	if (input.length() < 1)
+		return 1;
+	this->first_name = input;
+	return 0;
 }
 
-void	Contact::setLastName(const std::string &last_name){
-	this->last_name = last_name;
+int	Contact::setLastName(){
+	std::string	input;
+	std::cout << "Please enter the contact's last name" << std::endl;
+	std::getline(std::cin, input);
+	if (input.length() < 1)
+		return 1;
+	this->last_name = input;
+	return 0;
 }
 
-void	Contact::setNickName(const std::string &nick_name){
-	this->nick_name = nick_name;
+int	Contact::setNickName(){
+	std::string	input;
+	std::cout << "Please enter the contact's nick name" << std::endl;
+	std::getline(std::cin, input);
+	if (input.length() < 1)
+		return 1;
+	this->nick_name = input;
+	return 0;
 }
 
-void	Contact::setSecret(const std::string &secret){
-	this->darkest_secret = secret;
+int	Contact::setSecret(){
+	std::string	input;
+	std::cout << "Please enter the contact's darkest secret" << std::endl;
+	std::getline(std::cin, input);
+	if (input.length() < 1)
+		return 1;
+	this->darkest_secret = input;
+	return 0;
 }
 
-void	Contact::setNumber(const std::string &number){
-	for (size_t i = 0; i < number.length(); i++){
-		if (!isdigit(number[i])){
+int	Contact::setNumber(){
+	std::string	input;
+	std::cout << "Please enter the contact's number" << std::endl;
+	std::getline(std::cin, input);
+	if (input.length() < 1)
+		return 1;
+	for (size_t i = 0; i < input.length(); i++){
+		if (!isdigit(input[i])){
 			std::cout << "Phone number should (obvisouly) just contain numbers" << std::endl;
-			return ;
+			return 1;
 		}
 	}
-	this->phone_number = number;
+	this->phone_number = input;
+	return 0;
 }
 
 /*Constructor*/
