@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:03:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2026/01/16 18:22:57 by adpinhei         ###   ########.fr       */
+/*   Updated: 2026/01/19 18:38:02 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(){
 		std::cout << "Enter command: ADD, SEARCH or EXIT" << std::endl;
 		std::getline(std::cin, input);
 		if (!input.compare("EXIT") || !input.compare("exit"))
-			std::exit(0);
+			return 0;
 		else if (!input.compare("ADD") || !input.compare("add")){
 			Contact		newContact;
 			if (buildContact(&newContact))

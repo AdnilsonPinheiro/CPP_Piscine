@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 18:44:17 by adpinhei          #+#    #+#              #
-#    Updated: 2026/01/16 18:07:09 by adpinhei         ###   ########.fr        #
+#    Updated: 2026/01/19 18:34:34 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,15 @@ $(BUILD_DIR)/%.o: %.cpp
 $(NAME): $(OBJ_FILES) $(LIBFT)
 	@$(CC) $(FLAGS) $(OBJ_FILES) -o $@
 	@echo "$(YELLOW)Compiled$(RESET) $(NAME)"
+
+###############################################################################
+#                               Build executable                              #
+###############################################################################
+valgrind: $(NAME)
+	@echo "$(YELLOW)Running on Valgrind$(RESET)"
+	@valgrind --leak-check=full \
+	--show-leak-kinds=all \
+	./$(NAME)
 
 ###############################################################################
 #                                  Clean up                                   #
