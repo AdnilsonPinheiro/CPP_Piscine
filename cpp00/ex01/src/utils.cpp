@@ -28,7 +28,7 @@ void	ft_search(PhoneBook *PhoneBook){
 		std::cout << "Invalid number, sorry." << std::endl;
 		return ;
 	}
-	if (num > PhoneBook->getCount())
+	if (num >= PhoneBook->getCount())
 	{
 		std::cout << "We don't have that many friends." << std::endl;
 		return ;
