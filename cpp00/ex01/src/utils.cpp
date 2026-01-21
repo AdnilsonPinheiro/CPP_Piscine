@@ -14,6 +14,12 @@ int	buildContact(Contact *newContact){
 	return 0;
 }
 
+int	my_stoi(std::string &input){
+	int	i;
+	std::istringstream(input) >> i;
+	return i;
+}
+
 void	ft_search(PhoneBook *PhoneBook){
 	std::string	input;
 	int	num;
@@ -22,7 +28,7 @@ void	ft_search(PhoneBook *PhoneBook){
 	DisplayContacts(PhoneBook);
 	std::cout << "Which contact would you like to see?" << std::endl;
 	std::getline(std::cin, input);
-	num = ft_atoi(input);
+	num = my_stoi(input);
 	if (num < 0)
 	{
 		std::cout << "Invalid number, sorry." << std::endl;
@@ -59,21 +65,4 @@ std::string	fix_width(std::string str){
 		return (str.substr(0, 9) + ".");
 	}
 	return str;
-}
-
-int	ft_atoi(std::string input){
-	int	num;
-	size_t	i;
-
-	if (input.empty())
-		return -1;
-	for (i = 0; i < input.length(); i++){
-		if (input[i] < '0' || input[i] > '9')
-			return (-1);
-	}
-	num = 0;
-	for (i = 0; i < input.length(); i++){
-		num = (num * 10) + (input[i] - 48);
-	}
-	return (num);
 }

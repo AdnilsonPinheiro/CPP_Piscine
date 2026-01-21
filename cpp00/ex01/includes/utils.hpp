@@ -4,9 +4,11 @@
 # include "PhoneBook.hpp"
 # include "Contact.hpp"
 # include <iomanip>
+# include <sstream>
+
 
 int			buildContact(Contact *newContact);
-int			ft_atoi(std::string input);
+int	my_stoi(std::string &input);
 
 void		ft_search(PhoneBook *PhoneBook);
 void		DisplayContacts(PhoneBook *pb);
