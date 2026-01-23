@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 18:44:17 by adpinhei          #+#    #+#              #
-#    Updated: 2026/01/23 15:47:07 by adpinhei         ###   ########.fr        #
+#    Updated: 2026/01/23 16:26:45 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ BUILD_DIR := build
 ###############################################################################
 #                               Source Files                                  #
 ###############################################################################
-SRC_FILES := main.cpp zombie.cpp newZombie.cpp randomChump.cpp
+SRC_FILES := main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 ###############################################################################
 #                               Object Files                                  #

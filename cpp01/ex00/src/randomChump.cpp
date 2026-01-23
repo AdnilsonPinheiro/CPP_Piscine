@@ -1,4 +1,4 @@
-#include "../includes/zombie.hpp"
+#include "../includes/Zombie.hpp"
 
 void	randomChump(std::string name){
 	Zombie	randomChump(name);
