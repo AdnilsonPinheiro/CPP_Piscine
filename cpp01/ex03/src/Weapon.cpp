@@ -1,13 +1,13 @@
 #include "../includes/Weapon.hpp"
 
 const std::string	Weapon::getType() const{
-	return (this->type);
+	return (type);
 }
 
-void	Weapon::setType(std::string weaponType){
-	this->type = weaponType;
+void	Weapon::setType(std::string newType){
+	type = newType;
 }
 
-Weapon::Weapon(){}
+Weapon::Weapon(std::string newType) : type(newType){}
 
 Weapon::~Weapon(){}
