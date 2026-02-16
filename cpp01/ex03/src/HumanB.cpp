@@ -6,7 +6,7 @@ void	HumanB::attack(void)const {
 	if (weapon)
 		std::cout << name << " attacks with their " << weapon->getType() << std::endl;
 	else
-		std::cout << name << " is unarmed. You wouldn't hit an unarmed person, would you?" << std::endl;
+		std::cout << name << " is has no weapon and attacks with their bare hands. It is not very effective." << std::endl;
 }
 
 void	HumanB::setWeapon(Weapon &newWeapon){
