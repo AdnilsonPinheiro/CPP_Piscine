@@ -75,12 +75,6 @@ $(NAME): $(OBJ_FILES) $(LIBFT)
 ###############################################################################
 #                                   Testers                                   #
 ###############################################################################
-TESTER := el_olvido.txt
-
-test: $(NAME)
-	@echo "$(YELLOW)Testing$(RESET) $(NAME) $(YELLOW)with$(RESET) $(TESTER)"
-	@./$(NAME) $(TESTER) dangerous 'NOT SO DANGEROUS'
-
 valgrind: $(NAME)
 	@echo "$(YELLOW)Running on Valgrind$(RESET)"
 	@valgrind --leak-check=full \
