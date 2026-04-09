@@ -10,10 +10,9 @@ ClapTrap::ClapTrap(std::string name) : name(name), HitPoints(10), EnergyPoints(1
 	std::cout << "Parameterized constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& src)
+ClapTrap::ClapTrap(const ClapTrap& src) : name(src.name), HitPoints(src.HitPoints), EnergyPoints(src.EnergyPoints), AttackDamage(src.AttackDamage)
 {
 	std::cout << "Copy constructor called." << std::endl;
-	*this = src;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& src)
