@@ -51,6 +51,9 @@ class	Fixed{
 		Fixed	operator--(int);
 
 		//Overloaded functions
+		//static here means these functions belong to the class, not to any instance.
+		//This allows for these functions to be called like Fixed::func(),
+		//without the need for an object calling it.
 		static Fixed&		min(Fixed& lhs, Fixed &rhs);
 		static const Fixed&	min(const Fixed& lhs, const Fixed& rhs);
 		static Fixed&		max(Fixed& lhs, Fixed& rhs);

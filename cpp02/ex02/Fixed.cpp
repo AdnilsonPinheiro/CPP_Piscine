@@ -104,6 +104,9 @@ Fixed	Fixed::operator-(const Fixed& rhs)const
 	return result;
 }
 
+/*Both this.fixedPointValue and rhs.fixedPointValue are left-shifted 8 bits (i.e. * 256).
+After multiplying one by the other, we have double multiplication/shift, which is why we right-shift 8 bits,
+leaving the final data with only one multiplicaiton/shift*/
 Fixed	Fixed::operator*(const Fixed& rhs)const
 {
 	Fixed	result;
@@ -111,6 +114,8 @@ Fixed	Fixed::operator*(const Fixed& rhs)const
 	return result;	
 }
 
+/*Multiply the numerator by 256 so it can be divided by a denominator larger than the numerator's
+corresponding int without the operation resulting in 0*/
 Fixed	Fixed::operator/(const Fixed& rhs)const
 {
 	Fixed	result;
