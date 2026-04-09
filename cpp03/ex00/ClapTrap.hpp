@@ -6,10 +6,10 @@
 class ClapTrap
 {
 private:
-	std::string			name;
-	unsigned int		HitPoints;
-	unsigned int		EnergyPoints;
-	unsigned const int	AttackDamage;
+	std::string		name;
+	unsigned int	HitPoints;
+	unsigned int	EnergyPoints;
+	unsigned int	AttackDamage;
 public:
 	ClapTrap	();
 	ClapTrap	(std::string name);
