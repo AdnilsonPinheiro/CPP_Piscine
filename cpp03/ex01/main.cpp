@@ -1,22 +1,17 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main()
 {
-	ClapTrap	a;
-	ClapTrap	b("Nuno");
-	int			i;
+	ScavTrap	a;
+	ScavTrap	b(a);
+	ScavTrap	c("Hugo Scavez");
 
-	for (i = 0; i < 11; i++){
-		a.attack("Um Vacilao na Rua");
-	}
-
-	for (i = 0; i < 4; i++){
-		b.takeDamage(2);
-	}
-
-	for (i = 0; i < 2; i++){
-		b.beRepaired(1);
-	}
+	a.attack("someone");
+	a = c;
+	a.attack("someone");
+	b.attack("someone");
+	c.attack("someone");
+	c.guardGate();
 
 	return 0;
 }

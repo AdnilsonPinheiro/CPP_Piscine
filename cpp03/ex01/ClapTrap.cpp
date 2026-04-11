@@ -2,22 +2,22 @@
 
 ClapTrap::ClapTrap() : name ("Nameless"), HitPoints(10), EnergyPoints(10), AttackDamage(0)
 {
-	std::cout << "Default constructor called." << std::endl;
+	std::cout << "Default constructor called for ClapTrap " << this->name << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0)
 {
-	std::cout << "Parameterized constructor called." << std::endl;
+	std::cout << "Parameterized constructor called for ClapTrap " << this->name << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& src) : name(src.name), HitPoints(src.HitPoints), EnergyPoints(src.EnergyPoints), AttackDamage(src.AttackDamage)
 {
-	std::cout << "Copy constructor called." << std::endl;
+	std::cout << "Copy constructor called for ClapTrap " << this->name << " copying from " << src.name << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& src)
 {
-	std::cout << "Copy assignment operator called." << std::endl;
+	std::cout << "Assignment operator called for ClapTrap " << this->name << " assigning from " << src.name << std::endl;
 	if (this != &src){
 		this->name = src.name;
 		this->HitPoints = src.HitPoints;
@@ -29,7 +29,7 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& src)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called." << std::endl;
+	std::cout << "Destructor called for ClapTrap " << this->name << std::endl;
 }
 
 void	ClapTrap::attack(const std::string& target)
@@ -75,6 +75,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		this->EnergyPoints--;
 		std::cout << "\tIn doing so, ClapTrap " << this->name << " has spent 1 Energy Point. It now has " << this->EnergyPoints << " Energy Points." << std::endl;
 		this->HitPoints += amount;
+		if (this->HitPoints > 10)
+			this->HitPoints = 10;
 		std::cout << "\tClapTrap " << this->name << " now regained " << amount << " Hit Points! It now has " << this->HitPoints << " Hit Points!" << std::endl;
 	}
 }
