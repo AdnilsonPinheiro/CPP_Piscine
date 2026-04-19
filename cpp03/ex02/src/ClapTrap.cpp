@@ -32,10 +32,6 @@ ClapTrap::~ClapTrap()
 	std::cout << "Destructor called for ClapTrap " << this->name << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string const& name, unsigned int hp, unsigned int ep, unsigned int ad) : name(name), HitPoints(hp), EnergyPoints(ep), AttackDamage(ad)
-{}
-
-
 void	ClapTrap::attack(const std::string& target)
 {
 	if (this->EnergyPoints > 0 && this->HitPoints > 0){

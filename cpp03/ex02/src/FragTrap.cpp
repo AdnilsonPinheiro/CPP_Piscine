@@ -1,12 +1,18 @@
 #include "../includes/FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap("Default FragTrap", 100, 100, 30)
+FragTrap::FragTrap() : ClapTrap("Default FragTrap")
 {
+	this->HitPoints = 100;
+	this->EnergyPoints = 100;
+	this->AttackDamage = 30;
 	std::cout << "Default constructor called for " << this->name << std::endl;
 }
 
-FragTrap::FragTrap(std::string const& name) : ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap(std::string const& name) : ClapTrap(name)
 {	
+	this->HitPoints = 100;
+	this->EnergyPoints = 100;
+	this->AttackDamage = 30;
 	std::cout << "Parameterized constructor called for FragTrap " << this->name << std::endl;
 }
 

@@ -10,7 +10,6 @@ protected:
 	unsigned int	HitPoints;
 	unsigned int	EnergyPoints;
 	unsigned int	AttackDamage;
-	ClapTrap	(std::string const& name, unsigned int hp, unsigned int ep, unsigned int ad);
 public:
 	ClapTrap	();
 	ClapTrap	(std::string const& name);
