@@ -13,10 +13,7 @@ public:
 	Dog&	operator=(const Dog& rhs);
 	~Dog	();
 
-	void				setType(const std::string& _type);
-	const std::string&	getType()const;
-
-	void	makeSound();
+	void	makeSound()const;
 };
 
 #endif

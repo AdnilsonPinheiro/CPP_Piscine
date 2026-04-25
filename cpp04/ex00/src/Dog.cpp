@@ -10,17 +10,16 @@ Dog::Dog(const std::string& _type) : Animal(_type)
 	std::cout << "Dog param constructor" << std::endl;
 }
 
-Dog::Dog(const Dog& rhs)
+Dog::Dog(const Dog& rhs) : Animal(rhs)
 {
-	std::cout << "Dog reference constructor" << std::endl;
-	this->type = rhs.getType();
+	std::cout << "Dog copy constructor" << std::endl;
 }
 
 Dog&	Dog::operator=(const Dog& rhs)
 {
 	std::cout << "Dog assignment operator" << std::endl;
 	if (this != &rhs)
-		this->type = rhs.getType();
+		Animal::operator=(rhs);
 	return *this;
 }
 
@@ -29,17 +28,7 @@ Dog::~Dog()
 	std::cout << "Dog destructor" << std::endl;
 }
 
-void	Dog::setType(const std::string& _type)
-{
-	this->type = _type;
-}
-
-const std::string&	Dog::getType()const
-{
-	return (this->type);
-}
-
-void	Dog::makeSound()
+void	Dog::makeSound()const
 {
 	std::cout << "woof" << std::endl;
 }

@@ -10,9 +10,9 @@ Animal::Animal(const std::string& _type) : type(_type)
 	std::cout << "Animal param constructor" << std::endl;
 }
 
-Animal::Animal(const Animal& rhs) : type(rhs.getType())
+Animal::Animal(const Animal& rhs) : type(rhs.type)
 {
-	std::cout << "Animal reference constructor" << std::endl;
+	std::cout << "Animal copy constructor" << std::endl;
 }
 
 Animal&	Animal::operator=(const Animal& rhs)
@@ -38,7 +38,7 @@ const std::string&	Animal::getType()const
 	return (this->type);
 }
 
-void	Animal::makeSound()
+void	Animal::makeSound()const
 {
 	return;
 }
