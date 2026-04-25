@@ -35,7 +35,10 @@ DiamondTrap::DiamondTrap(const DiamondTrap& src) :
 DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& src)
 {
 	if (this != &src)
+	{
 		ClapTrap::operator=(src);
+		this->name = src.name;
+	}
 	std::cout << "DiamondTrap assignment operator called for " << this->name << std::endl;
 	return (*this);
 }
