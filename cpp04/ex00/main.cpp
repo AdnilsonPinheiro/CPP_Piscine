@@ -1,5 +1,6 @@
 #include "includes/Cat.hpp"
 #include "includes/Dog.hpp"
+#include "includes/WrongCat.hpp"
 
 int	main()
 {
@@ -42,5 +43,10 @@ int	main()
 	std::cout << good_boy.getType() << std::endl;
 	good_boy.makeSound();
 
+	std::cout << "\n=====================\n" << std::endl;
+
+	WrongAnimal*	w = new WrongCat();
+	w->makeSound();
+	delete w;
 	return 0;
 }

@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 18:44:17 by adpinhei          #+#    #+#              #
-#    Updated: 2026/04/25 15:30:13 by adpinhei         ###   ########.fr        #
+#    Updated: 2026/04/25 18:54:59 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ BUILD_DIR := build
 ###############################################################################
 #                               Source Files                                  #
 ###############################################################################
-SRC_FILES := main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC_FILES := main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
 
 ###############################################################################
 #                               Object Files                                  #
