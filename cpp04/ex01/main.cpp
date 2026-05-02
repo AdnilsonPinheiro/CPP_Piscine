@@ -1,4 +1,5 @@
 #include "includes/Cat.hpp"
+#include "includes/Dog.hpp"
 
 int	main()
 {
@@ -16,6 +17,23 @@ int	main()
 
 	std::cout << a.getBrain()->getIdeas(0) << std::endl;
 	std::cout << b.getBrain()->getIdeas(0) << std::endl;
+
+	std::cout << "\n============================\n" << std::endl;
+
+	Dog	x("puppy");
+	Dog	y(x);
+
+	std::cout << &x << std::endl;
+	std::cout << &y << std::endl;
+
+	std::cout << x.getBrain() << std::endl;
+	std::cout << y.getBrain() << std::endl;
+
+	x.getBrain()->setIdeas("x's ideas");
+	y.getBrain()->setIdeas("y's ideas");
+
+	std::cout << x.getBrain()->getIdeas(99) << std::endl;
+	std::cout << y.getBrain()->getIdeas(99) << std::endl;
 
 	std::cout << "\n============================\n" << std::endl;
 
