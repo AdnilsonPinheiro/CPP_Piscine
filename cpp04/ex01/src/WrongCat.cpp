@@ -2,11 +2,13 @@
 
 WrongCat::WrongCat() : WrongAnimal()
 {
+	this->type = "WRonG CAt";
 	std::cout << "WrongCat default constructor" << std::endl;
 }
 
 WrongCat::WrongCat(const std::string& _type) : WrongAnimal(_type)
 {
+	this->type = "WRonG CAt";
 	std::cout << "WrongCat param constructor" << std::endl;
 }
 

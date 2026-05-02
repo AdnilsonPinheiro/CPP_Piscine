@@ -41,5 +41,26 @@ int	main()
 	const Animal*	j = new Cat();
 	delete j;
 	std::cout << "ALLOCATED ANIMAL POINTER IS GOOOOONE" << std::endl;
+
+	std::cout << "\n============================\n" << std::endl;
+
+	int	size = 4;
+	Animal const*	animal[size];
+
+	for (int i = 0; i < size; i++){
+		if (i < size / 2){
+			animal[i] = new Dog();
+		}
+		else
+			animal[i] = new Cat();
+	}
+
+	for (int i = 0; i < size; i++){
+		animal[i]->makeSound();
+	}
+
+	for (int i = 0; i < size; i++){
+		delete(animal[i]);
+	}
 	return 0;
 }

@@ -2,12 +2,14 @@
 
 Cat::Cat() : Animal()
 {
+	this->type = "Cat";
 	this->brain = new Brain();
 	std::cout << "Cat default constructor" << std::endl;
 }
 
 Cat::Cat(const std::string& _type) : Animal(_type)
 {
+	this->type = "Cat";
 	this->brain = new Brain(_type);
 	std::cout << "Cat param constructor" << std::endl;
 }
