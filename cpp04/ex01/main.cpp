@@ -34,6 +34,7 @@ int	main()
 
 	std::cout << x.getBrain()->getIdeas(99) << std::endl;
 	std::cout << y.getBrain()->getIdeas(99) << std::endl;
+	std::cout << x.getBrain()->getIdeas(99) << std::endl;
 
 	std::cout << "\n============================\n" << std::endl;
 
