@@ -21,9 +21,9 @@ public:
     ~Form   ();
 
     const std::string&  getName()const;
-    bool                isSigned()const;
-    const int           getSignGrade()const;
-    const int           getExecGrade()const;
+    bool                sigStatus()const;
+    int                 getSignGrade()const;
+    int                 getExecGrade()const;
 
     void                beSigned(const Bureaucrat& bureaucrat);
 

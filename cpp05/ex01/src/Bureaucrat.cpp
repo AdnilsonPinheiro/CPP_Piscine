@@ -1,4 +1,5 @@
-#include "../inc/   Bureaucrat.hpp"
+#include "../inc/Bureaucrat.hpp"
+#include "../inc/Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("Default Name"), grade(75) {}
 
@@ -49,14 +50,13 @@ void    Bureaucrat::demote(int degrees)
     this->grade += degrees;
 }
 
-void    Bureaucrat::signForm(const Form& form)const
+void    Bureaucrat::signForm(Form& form)const
 {
-    bool success = form.beSigned(this);
-    if (success){
-        std::cout << this->name << " signed " << form.name;
+    try{
+    form.beSigned(*this);
     }
-    else{
-        std::cout << this->name << " couldn't sign " << form.name << " because his grade is too low." << std::endl;
+    catch (const std::exception& e){
+        std::cerr << this->name << " couldn't sign " << form.getName() << " for not having high enough grade" << std::endl;
     }
 }
 
