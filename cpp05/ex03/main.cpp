@@ -13,5 +13,14 @@ int	main()
 
 	std::cout << rrf->getName() << std::endl;
 
+	try {
+		someIntern.makeForm("new form request", "new target");
+	}
+	catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	delete rrf;
+
 	return 0;
 }

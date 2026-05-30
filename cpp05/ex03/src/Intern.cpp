@@ -23,7 +23,7 @@ static AForm*	createRobotomyRequestForm(const std::string& target)
 	return (new RobotomyRequestForm(target));
 }
 
-static AForm*	createShrubberyCreationFrom(const std::string& target)
+static AForm*	createShrubberyCreationForm(const std::string& target)
 {
 	return (new ShrubberyCreationForm(target));
 }
@@ -36,11 +36,13 @@ AForm*	Intern::makeForm(const std::string form, const std::string target)const
 	AForm* (*formFunctions[3])(const std::string&) = 
 		{&createPresidentialPardonForm,
 		&createRobotomyRequestForm,
-		&createShrubberyCreationFrom};
+		&createShrubberyCreationForm};
 
 	for (int i = 0; i < 3; i++){
-		if (form == formList[i])
+		if (form == formList[i]) {
+			std::cout << "Intern creates " << form << std::endl;
 			return (formFunctions[i](target));
+		}
 	}
 
 	throw Intern::UnknownFormException();
