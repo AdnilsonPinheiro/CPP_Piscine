@@ -1,12 +1,12 @@
-#ifndef AForm_HPP
-# define AForm_HPP
+#ifndef Form_HPP
+# define Form_HPP
 
 # include <string>
 # include <exception>
 # include <iostream>
 # include "Bureaucrat.hpp"
 
-class AForm
+class Form
 {
 private:
     const std::string   name;
@@ -14,11 +14,11 @@ private:
     const int           signGrade;
     const int           execGrade;
 public:
-    AForm    ();
-    AForm    (const std::string newName, const int newSignGrade, const int newExecGrade);
-    AForm    (const AForm& src);
-    AForm&   operator=(const AForm& src);
-    ~AForm   ();
+    Form    ();
+    Form    (const std::string newName, const int newSignGrade, const int newExecGrade);
+    Form    (const Form& src);
+    Form&   operator=(const Form& src);
+    ~Form   ();
 
     const std::string&  getName()const;
     bool                sigStatus()const;
@@ -26,6 +26,11 @@ public:
     int                 getExecGrade()const;
 
     void                beSigned(const Bureaucrat& bureaucrat);
+
+    class InvalidCopyAssignmentException : public std::exception{
+        public:
+            virtual const char* what() const throw();
+    };
 
     class GradeTooHighException : public std::exception{
         public:
@@ -38,6 +43,6 @@ public:
     };
 };
 
-std::ostream&   operator<<(std::ostream& out, const AForm& AForm);
+std::ostream&   operator<<(std::ostream& out, const Form& Form);
 
 #endif

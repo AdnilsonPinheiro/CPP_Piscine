@@ -1,8 +1,8 @@
-#include "../inc/AForm.hpp"
+#include "../inc/Form.hpp"
 
-AForm::AForm() : name("Standard AForm"), isSigned(false), signGrade(75), execGrade(75) {}
+Form::Form() : name("Standard Form"), isSigned(false), signGrade(75), execGrade(75) {}
 
-AForm::AForm(const std::string newName, const int newSignGrade, const int newExecGrade) : 
+Form::Form(const std::string newName, const int newSignGrade, const int newExecGrade) : 
     name(newName),
     signGrade(newSignGrade),
     execGrade(newExecGrade)
@@ -14,60 +14,67 @@ AForm::AForm(const std::string newName, const int newSignGrade, const int newExe
     this->isSigned = false;
 }
 
-AForm::AForm(const AForm& src) :
+Form::Form(const Form& src) :
     name(src.name),
     isSigned(false),
     signGrade(src.signGrade),
     execGrade(src.execGrade) {}
 
-AForm&   AForm::operator=(const AForm& src)
+Form&   Form::operator=(const Form& src)
 {
-    if (this != &src)
+    if (this != &src){
+        if (this->name != src.name || this->signGrade != src.signGrade || this->execGrade != src.execGrade)
+            throw InvalidCopyAssignmentException();
         this->isSigned = src.isSigned;
+    }
     return (*this);
 }
 
-AForm::~AForm(){}
+Form::~Form(){}
 
-const std::string&  AForm::getName()const    
+const std::string&  Form::getName()const    
 {
     return (this->name);
 }
 
-bool    AForm::sigStatus()const
+bool    Form::sigStatus()const
 {
     return (this->isSigned);
 }
 
-int   AForm::getSignGrade()const
+int   Form::getSignGrade()const
 {
     return (this->signGrade);
 }
 
-int   AForm::getExecGrade()const
+int   Form::getExecGrade()const
 {
     return (this->execGrade);
 }
 
-void    AForm::beSigned(const Bureaucrat& bureaucrat)
+void    Form::beSigned(const Bureaucrat& bureaucrat)
 {
     if (bureaucrat.getGrade() > this->signGrade)
         throw GradeTooLowException();
     this->isSigned = true;
 }
 
-const char* AForm::GradeTooHighException::what() const throw()
+const char* Form::InvalidCopyAssignmentException::what() const throw()
 {
-    return ("AForm Error: grade too high!");
+    return ("Form Error: invalid assingment operator!");
+}
+const char* Form::GradeTooHighException::what() const throw()
+{
+    return ("Form Error: grade too high!");
 }
 
-const char* AForm::GradeTooLowException::what() const throw()
+const char* Form::GradeTooLowException::what() const throw()
 {
-    return ("AForm Error: grade too low!");
+    return ("Form Error: grade too low!");
 }
 
-std::ostream&   operator<<(std::ostream& out, const AForm& AForm)
+std::ostream&   operator<<(std::ostream& out, const Form& Form)
 {
-    out << AForm.getName() << "\n\t" << "Signature Grade: " << AForm.getSignGrade() << "\n\t" << "Signature Status: " << AForm.sigStatus() << "\n\t" << "Execution Grade: " << AForm.getExecGrade() << std::endl;
+    out << Form.getName() << "\n\t" << "Signature Grade: " << Form.getSignGrade() << "\n\t" << "Signature Status: " << Form.sigStatus() << "\n\t" << "Execution Grade: " << Form.getExecGrade() << std::endl;
     return (out);
 }

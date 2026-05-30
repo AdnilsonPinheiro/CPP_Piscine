@@ -5,7 +5,7 @@
 # include <string>
 # include <iostream>
 
-class AForm;
+class Form;
 
 class Bureaucrat
 {
@@ -24,7 +24,7 @@ public:
     void                promote(int degrees);
     void                demote(int degrees);
 
-    void                signAForm(AForm& AForm)const;
+    void                signForm(Form& Form)const;
 
     class   GradeTooHighException : public std::exception
     {

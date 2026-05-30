@@ -1,50 +1,50 @@
-#include "./inc/AForm.hpp"
+#include "./inc/Form.hpp"
 #include "./inc/Bureaucrat.hpp"
 
 int main()
 {
     Bureaucrat  boss("Boss", 2);
     Bureaucrat  intern("Intern", 150);
-    AForm        highAForm("highAForm", 3, 3);
-    AForm        lowAForm("lowAForm", 150, 150);
+    Form        highForm("highForm", 3, 3);
+    Form        lowForm("lowForm", 150, 150);
 
 
 
-    std::cout << "\n===== AForm with too low grade =====\n" << std::endl;
+    std::cout << "\n===== Form with too low grade =====\n" << std::endl;
 
     try {
-        AForm tooLowAForm("impossibleAForm", 151, 10);
+        Form tooLowForm("impossibleForm", 151, 10);
         std::cout << "This is dead code" << std::endl;
     }
     catch (std::exception &e){
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "\n===== AForm with too high grade =====\n" << std::endl;;
+    std::cout << "\n===== Form with too high grade =====\n" << std::endl;;
 
     try {
-        AForm tooHighAForm("impossibleAForm", 0, 10);
+        Form tooHighForm("impossibleForm", 0, 10);
         std::cout << "This is dead code" << std::endl;
     }
     catch (std::exception &e){
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "\n===== Regular AForms =====\n" << std::endl;
+    std::cout << "\n===== Regular Forms =====\n" << std::endl;
 
-    std::cout << highAForm << std::endl;
-    std::cout << lowAForm << std::endl;
+    std::cout << highForm << std::endl;
+    std::cout << lowForm << std::endl;
 
     std::cout << "\n===== Boss and Intern =====\n" << std::endl;
 
     std::cout << boss << std::endl;
     std::cout << intern << std::endl;
 
-    std::cout << "\n===== Intern tries to sign AForms =====\n" << std::endl;
+    std::cout << "\n===== Intern tries to sign Forms =====\n" << std::endl;
 
     try {
-        intern.signAForm(highAForm);
-        intern.signAForm(lowAForm);
+        intern.signForm(highForm);
+        intern.signForm(lowForm);
         std::cout << "This is dead code" << std::endl;
     }
 
@@ -52,24 +52,24 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "\n===== AForms are intact =====\n" << std::endl;
+    std::cout << "\n===== Forms are intact =====\n" << std::endl;
 
-    std::cout << highAForm << std::endl;
-    std::cout << lowAForm << std::endl;
+    std::cout << highForm << std::endl;
+    std::cout << lowForm << std::endl;
 
-    std::cout << "\n===== Boss tries to sign highAForm =====\n" << std::endl;
+    std::cout << "\n===== Boss tries to sign highForm =====\n" << std::endl;
 
     try {
-        boss.signAForm(highAForm);
+        boss.signForm(highForm);
     }
     catch (std::exception &e){
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "\n===== AForms are signed =====\n" << std::endl;
+    std::cout << "\n===== Forms are signed =====\n" << std::endl;
 
-    std::cout << highAForm << std::endl;
-    std::cout << lowAForm << std::endl;
+    std::cout << highForm << std::endl;
+    std::cout << lowForm << std::endl;
 
     return 0;
 }
