@@ -1,17 +1,18 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-#include "AForm.hpp"
+# include "AForm.hpp"
+# include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
 private:
-	const std::string	target;
+	std::string	target;
 protected:
 	void	executeAction(void)const;
 public:
 	ShrubberyCreationForm	();
-	ShrubberyCreationForm	(const std::string newName);
+	ShrubberyCreationForm	(const std::string newTarget);
 	ShrubberyCreationForm	(const ShrubberyCreationForm& other);
 	ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& other);
 	~ShrubberyCreationForm	();
