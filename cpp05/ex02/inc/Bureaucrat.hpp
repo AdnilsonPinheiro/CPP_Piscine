@@ -24,7 +24,9 @@ public:
     void                promote(int degrees);
     void                demote(int degrees);
 
-    void                signAForm(AForm& AForm)const;
+    void                signAForm(AForm& form)const;
+
+    void                executeForm(AForm const& form)const;
 
     class   GradeTooHighException : public std::exception
     {

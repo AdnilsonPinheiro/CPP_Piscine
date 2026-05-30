@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 18:44:17 by adpinhei          #+#    #+#              #
-#    Updated: 2026/05/30 17:45:40 by adpinhei         ###   ########.fr        #
+#    Updated: 2026/05/30 17:50:26 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ BUILD_DIR := build
 ###############################################################################
 #                               Source Files                                  #
 ###############################################################################
-SRC_FILES := main.cpp Bureaucrat.cpp AForm.cpp
+SRC_FILES := main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+	RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 ###############################################################################
 #                               Object Files                                  #

@@ -23,7 +23,11 @@ AForm::AForm(const AForm& src) :
 AForm&   AForm::operator=(const AForm& src)
 {
     if (this != &src)
+    {
+        if (this->name != src.name || this->signGrade != src.signGrade || this->execGrade != src.execGrade)
+            throw InvalidCopyAssignmentException();
         this->isSigned = src.isSigned;
+    }
     return (*this);
 }
 
@@ -54,6 +58,25 @@ void    AForm::beSigned(const Bureaucrat& bureaucrat)
     if (bureaucrat.getGrade() > this->signGrade)
         throw GradeTooLowException();
     this->isSigned = true;
+}
+
+void    AForm::execute(Bureaucrat const& executor)const
+{
+    if (!this->isSigned)
+        throw FormNotSignedException();
+    if (executor.getGrade() > this->execGrade)
+        throw GradeTooLowException();
+    this->executeAction();
+}
+
+const char* AForm::InvalidCopyAssignmentException::what() const throw()
+{
+    return ("AForm Error: invalid copy assignment!");
+}
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+    return ("AForm Error: form needs signing!");
 }
 
 const char* AForm::GradeTooHighException::what() const throw()

@@ -50,15 +50,26 @@ void    Bureaucrat::demote(int degrees)
     this->grade += degrees;
 }
 
-void    Bureaucrat::signAForm(AForm& AForm)const
+void    Bureaucrat::signAForm(AForm& form)const
 {
     try{
-    AForm.beSigned(*this);
-    std::cout << this->name << " signed " << AForm.getName() << std::endl;
+        form.beSigned(*this);
+        std::cout << this->name << " signed " << form.getName() << std::endl;
     }
     catch (const std::exception& e){
-        std::cerr << this->name << " couldn't sign " << AForm.getName() << std::endl;
+        std::cerr << this->name << " couldn't sign " << form.getName() << std::endl;
         throw Bureaucrat::GradeTooLowException();
+    }
+}
+
+void    Bureaucrat::executeForm(AForm const& form)const
+{
+    try {
+        form.execute(*this);
+        std::cout << this->name << " executed " << form.getName() << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cout << this->name << " couldn't sign " << form.getName() << std::endl;
     }
 }
 

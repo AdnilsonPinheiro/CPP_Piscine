@@ -1,5 +1,5 @@
-#ifndef AForm_HPP
-# define AForm_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <string>
 # include <exception>
@@ -26,6 +26,19 @@ public:
     int                 getExecGrade()const;
 
     void                beSigned(const Bureaucrat& bureaucrat);
+
+    virtual void    execute(Bureaucrat const& executor)const;
+    virtual void    executeAction(void)const = 0;
+
+    class InvalidCopyAssignmentException : public std::exception{
+        public:
+            virtual const char* what() const throw();
+    };
+
+    class FormNotSignedException : public std::exception{
+        public:
+            virtual const char* what() const throw();
+    };
 
     class GradeTooHighException : public std::exception{
         public:
