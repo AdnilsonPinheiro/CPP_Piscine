@@ -50,7 +50,7 @@ void    Bureaucrat::demote(int degrees)
     this->grade += degrees;
 }
 
-void    Bureaucrat::signAForm(AForm& form)const
+void    Bureaucrat::signForm(AForm& form)const
 {
     try{
         form.beSigned(*this);
@@ -69,10 +69,17 @@ void    Bureaucrat::executeForm(AForm const& form)const
         std::cout << this->name << " executed " << form.getName() << std::endl;
     }
     catch (std::exception &e) {
-        std::cout << this->name << " couldn't sign " << form.getName() << std::endl;
+        std::cout << this->name << " couldn't execute " << form.getName() << std::endl;
+        if (!form.sigStatus())
+            throw Bureaucrat::FormUnsignedException();
+        throw Bureaucrat::GradeTooLowException();
     }
 }
 
+const char* Bureaucrat::FormUnsignedException::what() const throw()
+{
+    return ("Tried to execute an unsigned form");
+}
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
     return ("Grade is too high");
@@ -90,6 +97,6 @@ const char* Bureaucrat::InvalidAssignment::what() const throw()
 
 std::ostream&   operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
 {
-    out << bureaucrat.getName() << " ,bureaucrat grade: " << bureaucrat.getGrade() << "." << std::endl;
+    out << bureaucrat.getName() << ", bureaucrat grade: " << bureaucrat.getGrade() << "." << std::endl;
     return (out);
 }

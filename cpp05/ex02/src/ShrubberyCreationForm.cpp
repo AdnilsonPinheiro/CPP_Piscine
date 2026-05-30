@@ -28,6 +28,7 @@ void	ShrubberyCreationForm::executeAction()const
 
 	if (!outfile.is_open())
 		throw std::logic_error("Error opening outfile");
+	std::cout << "Check your ls again ;)" << std::endl;
 	outfile <<
 		"    * \n" <<
 		"   /.\\ \n" <<
