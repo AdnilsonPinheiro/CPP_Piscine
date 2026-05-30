@@ -54,9 +54,11 @@ void    Bureaucrat::signForm(Form& form)const
 {
     try{
     form.beSigned(*this);
+    std::cout << this->name << " signed " << form.getName() << std::endl;
     }
     catch (const std::exception& e){
-        std::cerr << this->name << " couldn't sign " << form.getName() << " for not having high enough grade" << std::endl;
+        std::cerr << this->name << " couldn't sign " << form.getName() << std::endl;
+        throw Bureaucrat::GradeTooLowException();
     }
 }
 
