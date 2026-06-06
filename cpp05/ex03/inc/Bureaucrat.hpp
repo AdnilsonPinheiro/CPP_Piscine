@@ -28,12 +28,6 @@ public:
 
     void                executeForm(AForm const& form)const;
 
-    class   FormUnsignedException : public std::exception
-    {
-        public:
-            virtual const char* what() const throw();
-    };
-
     class   GradeTooHighException : public std::exception
     {
         public:

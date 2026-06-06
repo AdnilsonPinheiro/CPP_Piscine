@@ -69,17 +69,10 @@ void    Bureaucrat::executeForm(AForm const& form)const
         std::cout << this->name << " executed " << form.getName() << std::endl;
     }
     catch (std::exception &e) {
-        std::cout << this->name << " couldn't execute " << form.getName() << std::endl;
-        if (!form.sigStatus())
-            throw Bureaucrat::FormUnsignedException();
-        throw Bureaucrat::GradeTooLowException();
+        std::cout << this->name << " couldn't execute " << form.getName() << " because: " << e.what() << std::endl;
     }
 }
 
-const char* Bureaucrat::FormUnsignedException::what() const throw()
-{
-    return ("Tried to execute an unsigned form");
-}
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
     return ("Grade is too high");

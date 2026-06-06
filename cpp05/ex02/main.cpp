@@ -148,5 +148,14 @@ int	main()
 		std::cout << e.what() << std::endl;
 	}
 
+	std::cout << "\n===== A hundred calls to Robotomy =====\n" << std::endl;
+	RobotomyRequestForm	rb;
+	Bureaucrat			br("Tester bureaucrat", 1);
+
+	br.signForm(rb);
+	for (int i = 0; i < 100; i++){
+		br.executeForm(rb);
+	}
+
 	return 0;
 }
