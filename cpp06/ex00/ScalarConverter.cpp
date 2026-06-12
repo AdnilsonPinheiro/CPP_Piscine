@@ -10,7 +10,7 @@ static void printChar(std::string& input)
 {
     char c = input [0];
     if (input.length() == 1 && (c > 32 && c < 127))
-        std::cout << input << std::endl;
+        std::cout << "char: " << input << std::endl;
     else
         impossible();
 }
