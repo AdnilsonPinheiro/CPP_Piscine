@@ -11,29 +11,25 @@ static int isPseudo(const std::string& str)
 
 static int inputType(const std::string& str)
 {
-    if (str.length() == 1 && !isdigit(str[0]))
-        return CHAR;
     if (isPseudo(str))
         return PSEUDO;
-    for (size_t i = 0; i < str.length(); i++){
-        if (!isdigit(str[i]))
-        {
-            if (str[i] != '.' && str[i] != 'f')
-                return ERROR;
-        }
-        else
-            return INT;
+    if (str.length() == 1 && !isdigit(str[0]))
+        return CHAR;
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (!isdigit(str[i]) && str[i] != '.' && str[i] != 'f')
+            return ERROR;
     }
     size_t p = str.find('.');
     if (p != str.npos)
     {
-        p = str.find('.', p);
+        p = str.find('.', p + 1);
         if (p != str.npos)
             return ERROR;
         else if (p == str.npos)
         {
             size_t f = str.find('f');
-            if (f == str.npos - 1)
+            if (f == str.length() - 1)
                 return FLOAT;
             else if (f == str.npos)
                 return DOUBLE;
@@ -41,7 +37,7 @@ static int inputType(const std::string& str)
                 return ERROR;
         }
     }
-    return ERROR;
+    return INT;
 }
 
 void ScalarConverter::convert(const std::string& input)
