@@ -2,6 +2,16 @@
 # define SCALARCONVERTER_HPP
 
 # include <string>
+# include <iostream>
+
+enum {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	PSEUDO,
+	ERROR
+};
 
 class ScalarConverter
 {

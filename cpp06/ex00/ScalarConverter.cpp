@@ -1,68 +1,71 @@
 #include "ScalarConverter.hpp"
-#include <cstdlib>
-#include <iostream>
 
-static void impossible()
+static int isPseudo(const std::string& str)
 {
-    std::cout << "impossible" << std::endl;
-}
-
-static void non_disp()
-{
-    std::cout << "Non displayable" << std::endl;
-}
-
-static bool is_neg_inf(const std::string& input)
-{
-    if (input == "-inf" || input == "-inff")
+    if (str == "nan" || str == "nanf" || str == "inf" || str == "+inf" || str == "+inff" \
+    || str == "-inf" || str == "-inff")
         return true;
     return false;
 }
 
-static bool is_pos_inf(const std::string& input)
+
+static int inputType(const std::string& str)
 {
-    if (input == "+inf" || input == "+inff" || input == "inf")
-        return true;
-    return false;
+    if (str.length() == 1 && !isdigit(str[0]))
+        return CHAR;
+    if (isPseudo(str))
+        return PSEUDO;
+    for (size_t i = 0; i < str.length(); i++){
+        if (!isdigit(str[i]))
+        {
+            if (str[i] != '.' && str[i] != 'f')
+                return ERROR;
+        }
+        else
+            return INT;
+    }
+    size_t p = str.find('.');
+    if (p != str.npos)
+    {
+        p = str.find('.', p);
+        if (p != str.npos)
+            return ERROR;
+        else if (p == str.npos)
+        {
+            size_t f = str.find('f');
+            if (f == str.npos - 1)
+                return FLOAT;
+            else if (f == str.npos)
+                return DOUBLE;
+            else
+                return ERROR;
+        }
+    }
+    return ERROR;
 }
-
-static bool is_nan(const std::string& input)
-{
-    if (input == "nan" || input == "nanf")
-        return true;
-    return false;
-}
-
-static void printChar(const std::string& input)
-{
-    std::cout << "char: ";
-    if (is_nan(input) || is_neg_inf(input) || is_pos_inf(input))
-        return impossible();
-    long int nbr = std::strtol(input.c_str(), NULL, 10);
-    if (nbr < 0 || nbr > 127)
-        impossible();
-    else if (nbr > 32 && nbr < 127)
-        std::cout << static_cast<char>(nbr) << std::endl;
-    else if ((nbr < 33 && nbr >= 0) || nbr == 127)
-        non_disp();
-}
-
-// static void printInt(std::string& input)
-// {
-
-// }
-
-// static void printFloat(std::string& input)
-// {
-
-// }
-
-// static void printDouble(std::string& input)
-// {
-
-// }
 
 void ScalarConverter::convert(const std::string& input)
 {
-    printChar(input);
+    int t = inputType(input);
+    std::cout << t << std::endl;
+    // switch(t)
+    // {
+    //     case CHAR:
+    //         printFromChar(input);
+    //         break;
+    //     case INT:
+    //         printFromInt(input);
+    //         break;
+    //     case FLOAT:
+    //         printFromFloat(input);
+    //         break;
+    //     case DOUBLE:
+    //         printFromDouble(input);
+    //         break;
+    //     case PSEUDO:
+    //         printFromPseudo(input);
+    //         break;
+    //     case ERROR:
+    //         std::cerr << "Invalid argument. Must represent a C++ literal" << std::endl;
+    // }
 }
