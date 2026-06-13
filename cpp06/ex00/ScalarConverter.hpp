@@ -6,7 +6,7 @@
 class ScalarConverter
 {
 public:
-	static void convert(std::string& input);
+	static void convert(const std::string& input);
 private:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter& src);
