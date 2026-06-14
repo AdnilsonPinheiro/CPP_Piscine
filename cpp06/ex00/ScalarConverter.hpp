@@ -4,6 +4,8 @@
 # include <string>
 # include <iostream>
 # include <iomanip>
+# include <climits>
+# include <cstdlib>
 
 enum {
 	CHAR,
