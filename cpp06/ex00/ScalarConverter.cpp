@@ -4,6 +4,7 @@ static int inputType(const std::string& str);
 static bool isInt(const std::string& str);
 static void printFromChar(const char c);
 static void printFromInt(const std::string& str);
+static void printFromFloat(const std::string& str);
 static void printFromPseudo(const std::string &str);
 
 void ScalarConverter::convert(const std::string& input)
@@ -17,9 +18,9 @@ void ScalarConverter::convert(const std::string& input)
         case INT:
             printFromInt(input);
             break;
-        // case FLOAT:
-        //     printFromFloat(input);
-        //     break;
+        case FLOAT:
+            printFromFloat(input);
+            break;
         // case DOUBLE:
         //     printFromDouble(input);
         //     break;
@@ -112,6 +113,29 @@ static void printFromInt(const std::string& str)
     std::cout << "float: " << static_cast<float>(n) << "f\n";
     std::cout << "double: " << static_cast<double>(n) << std::endl;
 }
+
+static void printFromFloat(const std::string& str)
+{
+    float n = std::atof(str.c_str());
+
+    if (n >= 0 && n <= 127)
+    {
+        if (std::isprint(n))
+            std::cout << "char: '" << static_cast<char>(n) << "'\n";
+        else
+            std::cout << "char: Non displayable\n";
+    }
+    else
+        std::cout << "char: impossible\n";
+    if (n > INT_MAX || n < INT_MIN)
+        std::cout << "int: impossible\n";
+    else
+        std::cout << "int: " << static_cast<int>(n) << "\n";
+    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "float: " << n << "f\n";
+    std::cout << "double: " << static_cast<double>(n) << std::endl;
+}
+
 static void printFromPseudo(const std::string &str)
 {
     std::cout << "char: impossible\nint: impossible" << std::endl;
