@@ -1,7 +1,6 @@
 #include "ScalarConverter.hpp"
 
 static int inputType(const std::string& str);
-static bool isInt(const std::string& str);
 static void printFromChar(const char c);
 static void printFromInt(const std::string& str);
 static void printFromFloat(const std::string& str);
@@ -35,53 +34,25 @@ void ScalarConverter::convert(const std::string& input)
 
 static int inputType(const std::string& str)
 {
-    int f_count = 0;
-    int d_count = 0;
-
     if (str == "nan" || str == "nanf" || str == "inf" || str == "inff" || \
         str == "+inf" || str == "+inff" || str == "-inf" || str == "-inff")
         return PSEUDO;
     if (str.length() == 1 && !isdigit(str[0]))
         return CHAR;
-    for (size_t i = 0; i < str.length(); i++)
-    {
-        if (str[i] == '-'){
-            if (i != 0)
-                return ERROR;
-        }
-        else if (str[i] == '.'){
-            if (!isdigit(str[i + 1]))
-                return ERROR;
-            d_count++;
-        }
-        else if (str[i] == 'f'){
-            if (i != (str.length() - 1))
-                return ERROR;
-            f_count++;
-        }
-        else if (!isdigit(str[i]) && str[i] != '-' && str[i] != '.' && str[i] != 'f')
-            return ERROR;
-    }
-    if (d_count > 1)
-        return ERROR;
-    if (f_count)
-        return FLOAT;
-    if (d_count)
-        return DOUBLE;
-    if (isInt(str))
-        return INT;
-    return ERROR;
-}
 
-static bool isInt(const std::string& str)
-{
-    long n;
     char* endPtr;
+    long n;
 
     n = std::strtol(str.c_str(), &endPtr, 10);
-    if (*endPtr == '\0' && (n >= INT_MIN && n <= INT_MAX))
-        return true;
-    return false;
+    if (*endPtr == '\0' && n >= INT_MIN && n <= INT_MAX)
+        return INT;
+    std::strtof(str.c_str(), &endPtr);
+    if (*endPtr == 'f' && *(endPtr + 1) == '\0')
+        return FLOAT;
+    std::strtod(str.c_str(), &endPtr);
+    if (*endPtr == '\0')
+        return DOUBLE;
+    return ERROR;
 }
 
 static void printFromChar(const char c)
