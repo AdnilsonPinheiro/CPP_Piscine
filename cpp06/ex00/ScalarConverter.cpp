@@ -11,57 +11,62 @@ static int isPseudo(const std::string& str)
 
 static int inputType(const std::string& str)
 {
+    int f_count = 0;
+    int d_count = 0;
+
     if (isPseudo(str))
         return PSEUDO;
     if (str.length() == 1 && !isdigit(str[0]))
         return CHAR;
     for (size_t i = 0; i < str.length(); i++)
     {
-        if (!isdigit(str[i]) && str[i] != '.' && str[i] != 'f')
-            return ERROR;
-    }
-    size_t p = str.find('.');
-    if (p != str.npos)
-    {
-        p = str.find('.', p + 1);
-        if (p != str.npos)
-            return ERROR;
-        else if (p == str.npos)
-        {
-            size_t f = str.find('f');
-            if (f == str.length() - 1)
-                return FLOAT;
-            else if (f == str.npos)
-                return DOUBLE;
-            else
+        if (str[i] == '-'){
+            if (i != 0)
                 return ERROR;
         }
+        else if (str[i] == '.'){
+            if (!isdigit(str[i + 1]))
+                return ERROR;
+            d_count++;
+        }
+        else if (str[i] == 'f'){
+            if (i != (str.length() - 1))
+                return ERROR;
+            f_count++;
+        }
+        else if (!isdigit(str[i]) && str[i] != '-' && str[i] != '.' && str[i] != 'f')
+            return ERROR;
     }
+    if (d_count > 1)
+        return ERROR;
+    if (f_count)
+        return FLOAT;
+    if (d_count)
+        return DOUBLE;
     return INT;
 }
 
 void ScalarConverter::convert(const std::string& input)
 {
     int t = inputType(input);
-    std::cout << t << std::endl;
-    // switch(t)
-    // {
-    //     case CHAR:
-    //         printFromChar(input);
-    //         break;
-    //     case INT:
-    //         printFromInt(input);
-    //         break;
-    //     case FLOAT:
-    //         printFromFloat(input);
-    //         break;
-    //     case DOUBLE:
-    //         printFromDouble(input);
-    //         break;
-    //     case PSEUDO:
-    //         printFromPseudo(input);
-    //         break;
-    //     case ERROR:
-    //         std::cerr << "Invalid argument. Must represent a C++ literal" << std::endl;
-    // }
+    switch(t)
+    {
+        case CHAR:
+            printFromChar(input);
+            break;
+        case INT:
+            printFromInt(input);
+            break;
+        case FLOAT:
+            printFromFloat(input);
+            break;
+        case DOUBLE:
+            printFromDouble(input);
+            break;
+        case PSEUDO:
+            printFromPseudo(input);
+            break;
+        case ERROR:
+            std::cerr << "Invalid argument. Must represent a C++ literal" << std::endl;
+    }
 }
