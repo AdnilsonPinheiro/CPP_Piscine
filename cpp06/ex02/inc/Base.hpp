@@ -4,10 +4,6 @@
 # include <iostream>
 # include <exception>
 
-class A;
-class B;
-class C;
-
 class Base
 {
 public:
