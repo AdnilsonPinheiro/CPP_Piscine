@@ -3,6 +3,7 @@
 # include <cstdlib>
 # include <iostream>
 # include <exception>
+# include <typeinfo>
 
 class Base
 {

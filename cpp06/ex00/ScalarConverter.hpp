@@ -6,6 +6,7 @@
 # include <iomanip>
 # include <climits>
 # include <cstdlib>
+# include <float.h>
 
 enum {
 	CHAR,

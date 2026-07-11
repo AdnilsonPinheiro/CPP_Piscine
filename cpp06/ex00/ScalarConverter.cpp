@@ -99,7 +99,7 @@ static void printFromFloat(const std::string& str)
     }
     else
         std::cout << "char: impossible\n";
-    if (n > INT_MAX || n < INT_MIN)
+    if (n > FLT_MAX || n < -FLT_MAX)
         std::cout << "int: impossible\n";
     else
         std::cout << "int: " << static_cast<int>(n) << "\n";
@@ -121,7 +121,7 @@ static void printFromDouble(const std::string& str)
     }
     else
         std::cout << "char: impossible\n";
-    if (n > INT_MAX || n < INT_MIN)
+    if (n > DBL_MAX || n < -DBL_MAX)
         std::cout << "int: impossible\n";
     else
         std::cout << "int: " << static_cast<int>(n) << "\n";
