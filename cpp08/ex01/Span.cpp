@@ -20,7 +20,7 @@ void	Span::addNumber(int value)
 	if (data.size() >= N)
 		throw fullException();
 	data.push_back(value);
-	std::cout << "Value: " << value << " added to container." << std::endl;
+	// std::cout << "Value: " << value << " added to container." << std::endl;
 }
 unsigned int	Span::shortestSpan()const
 {
