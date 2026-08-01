@@ -1,3 +1,6 @@
+#ifndef RPN_HPP
+# define RPN_HPP
+
 #include <stack>
 #include <string>
 #include <sstream>
@@ -12,3 +15,5 @@ public:
 	RPN& operator=(const RPN& other);
 	int evaluate(const std::string& expression);
 };
+
+#endif
