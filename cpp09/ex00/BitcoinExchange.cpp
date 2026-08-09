@@ -20,6 +20,7 @@ void BitcoinExchange::processInput(const std::string& input)
 
 	std::string line;
 
+	// checks if a first line exists and if it is in the appropriate form
 	if (!std::getline(filename, line) || line != "date | value")
 		throw std::runtime_error("Error: header must be \"date | value\"");
 
@@ -28,7 +29,9 @@ void BitcoinExchange::processInput(const std::string& input)
 		std::stringstream ss(line);
 		std::string date, value;
 
+		// passes the content of the line, up until the '|' character, to std::string date
 		std::getline(ss, date, '|');
+		// passes rest of the line to std::string value
 		std::getline(ss, value);
 
 		trim(date);
@@ -40,6 +43,13 @@ void BitcoinExchange::processInput(const std::string& input)
 			continue;
 		}
 	}
+}
+
+bool BitcoinExchange::isValidDate(const std::string& date)
+{
+	if (date.length() != 10)
+		return false;
+	
 }
 
 static void trim(std::string& str)
