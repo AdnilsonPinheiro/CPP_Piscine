@@ -1,11 +1,6 @@
 #include "RPN.hpp"
 
-int isOperator(const char& c)
-{
-	if (c == '+' || c == '-' || c == '/' || c == '*')
-		return 1;
-	return 0;
-}
+static int isOperator(const char& c);
 
 RPN::RPN() {}
 RPN::~RPN() {}
@@ -15,6 +10,7 @@ RPN& RPN::operator=(const RPN& other)
 	(void)other;
 	return *this;
 }
+
 int RPN::evaluate(const std::string& expression)
 {
 	std::stringstream iss(expression);
@@ -72,4 +68,11 @@ int RPN::evaluate(const std::string& expression)
 	if (stk.size() != 1)
 		throw std::runtime_error("Error: invalid expression");
 	return stk.top();
+}
+
+static int isOperator(const char& c)
+{
+	if (c == '+' || c == '-' || c == '/' || c == '*')
+		return 1;
+	return 0;
 }
