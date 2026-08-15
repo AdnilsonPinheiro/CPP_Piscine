@@ -3,7 +3,10 @@
 int main(int argc, char** argv)
 {
 	if (argc != 2)
-		throw std::runtime_error("Error: invalid number of arguments");
+	{
+		std::cerr << "Error: invalid number of arguments" << std::endl;
+		return 1;
+	}
 	try
 	{
 		BitcoinExchange btc;
