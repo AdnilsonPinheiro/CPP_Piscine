@@ -4,58 +4,34 @@
 #include <iostream>
 #include <sstream>
 #include <stdio.h>
+#include <stdlib.h>
 #include <vector>
 #include <deque>
-#include <stdlib.h>
+#include <ctime>
+#include <climits>
+#include <algorithm>
+
+
+    // std::clock_t start;
+    // double duration;
+    // start = std::clock();
+    // duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    // std::cout<<"printf: "<< duration <<'\n';
+
 
 class PMM
 {
 private:
-	std::vector<int>	vect;
+	std::vector<int>	vec;
 	std::deque<int>		deq;
 
-	int stoi(const std::string& str);
+	std::clock_t		vec_start;
+	std::clock_t		deq_start;
 
-	template<typename T>
-	void	generateJacobsthal(int n, T& container)
-	{
-		T.push_back(0);
-		T.push_back(1);
-		T.push_back(3);
+	void displayVector();
+	void vecFordJohnson(std::vector<int>& arr);
 
-		for (size_t i = 3; i < n; i++)
-		{
-			container::iterator it = container.end();
-			--it;
-			int last = *it;
-			--it;
-			int secondLast = *it;
-			int newElement = last + (2* secondLast);
-			container.push_back(newElement);
-		}
-	}
-
-	template<typename T>
-	void displayArray(T arr)
-	{
-		if (arr.lenght() > 10)
-		{
-			for (size_t i = 0; i < 6; i++)
-			{
-				std::cout << arr[i] << " ";
-			}
-			std::cout << "[...] "
-			std::cout << arr[arr.length() - 1] << std::endl;
-		}
-		else
-		{
-			for (size_t i = 0; i < arr.length(); i++)
-			{
-				std::cout << arr[i] << " ";
-			}
-			std::cout << std::endl;
-		}
-	}
+	std::vector<int> generateJacobsthal(size_t n);
 
 public:
 	PMM();
