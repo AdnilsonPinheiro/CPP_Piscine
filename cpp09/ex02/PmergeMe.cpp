@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
 
 static long stoi(const std::string& str);
+static int findLoser(const std::vector<std::pair<int, int>>& pairs, int winner);
 
 PMM::PMM() {}
 PMM::~PMM() {}
@@ -83,51 +84,35 @@ void PMM::vecFordJohnson(std::vector<int>& arr)
 	}
 
 	size_t num = arr.size()/2;
-	std::vector<int> pairs[num];
+	std::vector< std::pair<int, int> > pairs(num); //pairs[i] = (loser, winner)
 
-	size_t i = 0;
-	size_t j = 0;
-	while (i < arr.size() && j < num)
+	for (size_t i = 0; i < num; i++)
 	{
-		pairs[j].push_back(arr[i]);
-		pairs[j].push_back(arr[i+1]);
-		std::sort(pairs[j].begin(), pairs[j].end());
-		i += 2;
-		j++;
+		int a = arr[2 * i];
+		int b = arr[2 * i + 1];
+		if (a > b)
+			std::swap(a, b);
+		pairs[i] = std::make_pair(a, b);
 	}
 
 	std::vector<int> mainChain;
+	
 	for (size_t i = 0; i < num; i++)
-	{
-		mainChain.push_back(pairs[i].back());
-		std::sort(mainChain.begin(), mainChain.end());
-	}
+		mainChain.push_back(pairs[i].second);
 
 	vecFordJohnson(mainChain);
 
 	std::vector<int> jacob = generateJacobsthal(arr.size());
 
-	for (size_t i = 0; i < jacob.size(); i++)
+	std::vector<int> order;
+	order.push_back(1);
+
+	for (size_t i = 2; i < num; i++)
 	{
-		int value;
-		int idx = jacob[i];
-		int upperLimit = mainChain.at(idx);
-		if (i == 0)
-		{
-			value = pairs[i].front();
-			mainChain.insert(0, value);
-		}	
-		else
-		{
-			int lowerLimit = jacob[i - 1];
-			int newIdx = idx - 1;
-			while (newIdx > lowerLimit)
-			{
-				value  = pairs[newIdx].front();
-				
-				newIdx--;
-			}
-		}
+		size_t hi = std::min(num, (size_t)jacob[i]); //finding the highest point of our batch and preventing overflow
+		size_t low = (size_t)jacob[i - 1] + 1; //the lowest point is right after the last jacobsthal index we checked
+		for (size_t j = hi; j >= low; j--)
+			order.push_back(j);
 	}
 
 	if (has_trailer)
@@ -153,6 +138,16 @@ std::vector<int> PMM::generateJacobsthal(size_t n)
 		jacob.push_back(last + (2*secondLast));
 	}
 	return jacob;
+}
+
+static int findLoser(const std::vector<std::pair<int, int>>& pairs, int winner)
+{
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		if (pairs[i].second == winner)
+			break;
+	}
+	return (pairs[i].first); 
 }
 
 static long stoi(const std::string& str)
