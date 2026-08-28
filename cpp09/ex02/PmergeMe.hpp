@@ -30,9 +30,13 @@ private:
 	std::clock_t		deq_start;
 
 	void displayVector();
-	void vecFordJohnson(std::vector<int>& arr);
+	void displayDeque();
 
-	std::vector<int> generateJacobsthal(size_t n);
+	void vecFordJohnson(std::vector<int>& arr);
+	void deqFordJohnson(std::deque<int>& arr);
+
+	std::vector<int> generateVecJacobsthal(size_t n);
+	std::deque<int> generateDeqJacobsthal(size_t n);
 
 public:
 	PMM();
