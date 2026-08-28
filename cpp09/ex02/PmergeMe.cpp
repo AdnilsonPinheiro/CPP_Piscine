@@ -1,8 +1,8 @@
 #include "PmergeMe.hpp"
 
 static long stoi(const std::string& str);
-static int vecFindLoser(const std::vector<std::pair<int, int> >& pairs, int winner);
-static int deqFindLoser(const std::deque<std::pair<int, int> >& pairs, int winner);
+//static int vecFindLoser(const std::vector<std::pair<int, int> >& pairs, int winner);
+//static int deqFindLoser(const std::deque<std::pair<int, int> >& pairs, int winner);
 
 PMM::PMM() {}
 PMM::~PMM() {}
@@ -37,7 +37,8 @@ void PMM::parseArray(char** argv, int argc)
 	}
 
 	std::cout << "Before: ";
-	displayVector();
+	//displayVector();
+	displayContainer(vec);
 
 	vec_start = std::clock();
 	vecFordJohnson(vec);
@@ -50,7 +51,8 @@ void PMM::parseArray(char** argv, int argc)
 	double deq_time = static_cast<double>(deq_end - deq_start) / (double)CLOCKS_PER_SEC * 1000000.0;
 
 	std::cout << "After: ";
-	displayVector();
+	//displayVector();
+	displayContainer(vec);
 
 	std::cout << "\nTime elapsed to process "<< vec.size() <<" elements on VECTOR:\t" << vec_time << "us" << std::endl;
 	std::cout << "Time elapsed to process "<< deq.size() <<" elements on DEQUE:\t\t" << deq_time << "us" << std::endl;
@@ -60,7 +62,7 @@ void PMM::parseArray(char** argv, int argc)
 /************************ Vector Implementation **************************************/
 /*************************************************************************************/
 
-void PMM::displayVector()
+/*void PMM::displayVector()
 {
 	if (vec.size() > 10)
 	{
@@ -81,7 +83,7 @@ void PMM::displayVector()
 		}
 		std::cout << std::endl;
 	}
-}
+}*/
 
 void PMM::vecFordJohnson(std::vector<int>& arr)
 {
@@ -143,7 +145,7 @@ void PMM::vecFordJohnson(std::vector<int>& arr)
 	{
 		size_t i = order[idx];
 		int win = pairs[i - 1].second;
-		int los = vecFindLoser(pairs, win);
+		int los = findLoser(pairs, win);
 
 		std::vector<int>::iterator posWin = std::find(mainChain.begin(), mainChain.end(), win);
 		std::vector<int>::iterator insertPos = std::upper_bound(mainChain.begin(), posWin, los);
@@ -186,7 +188,7 @@ std::vector<int> PMM::generateVecJacobsthal(size_t n)
 /************************* Deque Implementation **************************************/
 /*************************************************************************************/
 
-void PMM::displayDeque()
+/*void PMM::displayDeque()
 {
 	if (deq.size() > 10)
 	{
@@ -207,7 +209,7 @@ void PMM::displayDeque()
 		}
 		std::cout << std::endl;
 	}
-}
+}*/
 
 void PMM::deqFordJohnson(std::deque<int>& arr)
 {
@@ -262,7 +264,7 @@ void PMM::deqFordJohnson(std::deque<int>& arr)
 	{
 		size_t i = order[idx];
 		int win = pairs[i - 1].second;
-		int los = deqFindLoser(pairs, win);
+		int los = findLoser(pairs, win);
 
 		std::deque<int>::iterator posWin = std::find(mainChain.begin(), mainChain.end(), win);
 		std::deque<int>::iterator insertPos = std::upper_bound(mainChain.begin(), posWin, los);
@@ -304,7 +306,7 @@ std::deque<int> PMM::generateDeqJacobsthal(size_t n)
 /************************************** Utils ****************************************/
 /*************************************************************************************/
 
-static int vecFindLoser(const std::vector<std::pair<int, int> >& pairs, int winner)
+/*static int vecFindLoser(const std::vector<std::pair<int, int> >& pairs, int winner)
 {
 	size_t i = 0;
 
@@ -328,7 +330,7 @@ static int deqFindLoser(const std::deque<std::pair<int, int> >& pairs, int winne
 		i++;
 	}
 	return (pairs[i].first); 
-}
+}*/
 
 static long stoi(const std::string& str)
 {
