@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 static long stoi(const std::string& str);
-static int findLoser(const std::vector<std::pair<int, int>>& pairs, int winner);
+static int findLoser(const std::vector<std::pair<int, int> >& pairs, int winner);
 
 PMM::PMM() {}
 PMM::~PMM() {}
@@ -40,9 +40,13 @@ void PMM::parseArray(char** argv, int argc)
 
 	vec_start = std::clock();
 	vecFordJohnson(vec);
+	std::clock_t vec_end = std::clock();
+	double vec_time = static_cast<double>(vec_end - vec_start) / (double)CLOCKS_PER_SEC * 1000000.0;
 
-	//std::cout << "After: ";
-	//displayVector();
+	std::cout << "After: ";
+	displayVector();
+
+	std::cout << "\nTime elapsed to process "<< vec.size() <<" elements on vector:\t" << vec_time << "us" << std::endl;
 }
 
 void PMM::displayVector()
@@ -107,16 +111,43 @@ void PMM::vecFordJohnson(std::vector<int>& arr)
 	std::vector<int> order;
 	order.push_back(1);
 
-	for (size_t i = 2; i < num; i++)
+	for (size_t i = 2; i < jacob.size(); i++)
 	{
-		size_t hi = std::min(num, (size_t)jacob[i]); //finding the highest point of our batch and preventing overflow
-		size_t low = (size_t)jacob[i - 1] + 1; //the lowest point is right after the last jacobsthal index we checked
-		for (size_t j = hi; j >= low; j--)
+		size_t upper = std::min(num, (size_t)jacob[i]); //finding the highest point of our batch and preventing overflow
+		size_t bottom = (size_t)jacob[i - 1] + 1; //the lowest point is right after the last jacobsthal index we checked
+		for (size_t j = upper; j >= bottom; j--)
 			order.push_back(j);
+		if ((size_t)jacob[i] >= num) //avoid overflowing
+			break;
 	}
 
+	// Tests order of insertion
+	// std::cout << "Order of insertion: ";
+	// for (size_t i = 0; i < order.size(); i++)
+	// 	std::cout << order[i] << " ";
+	// std::cout << std::endl;
+
+	//Insert losers from pairs into the mainchain
+	for (size_t idx = 0; idx < order.size(); idx++)
+	{
+		size_t i = order[idx];
+		int win = pairs[i - 1].second;
+		int los = findLoser(pairs, win);
+
+		std::vector<int>::iterator posWin = std::find(mainChain.begin(), mainChain.end(), win);
+		std::vector<int>::iterator insertPos = std::upper_bound(mainChain.begin(), posWin, los);
+
+		mainChain.insert(insertPos, los);
+	}
+
+	//Insert trailling element
 	if (has_trailer)
-		(void)trailer;
+	{
+		std::vector<int>::iterator insertPos = std::upper_bound(mainChain.begin(), mainChain.end(), trailer);
+		mainChain.insert(insertPos, trailer);
+	}
+
+	arr = mainChain;
 }
 
 
@@ -140,12 +171,15 @@ std::vector<int> PMM::generateJacobsthal(size_t n)
 	return jacob;
 }
 
-static int findLoser(const std::vector<std::pair<int, int>>& pairs, int winner)
+static int findLoser(const std::vector<std::pair<int, int> >& pairs, int winner)
 {
-	for (size_t i = 0; i < pairs.size(); i++)
+	size_t i = 0;
+
+	while (i < pairs.size())
 	{
 		if (pairs[i].second == winner)
 			break;
+		i++;
 	}
 	return (pairs[i].first); 
 }
