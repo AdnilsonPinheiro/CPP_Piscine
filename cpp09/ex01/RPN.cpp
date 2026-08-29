@@ -31,9 +31,9 @@ int RPN::evaluate(const std::string& expression)
 			if (stk.size() < 2)
 				throw std::runtime_error("Error: not enough numbers for operator");
 
-			int a = stk.top();
-			stk.pop();
 			int b = stk.top();
+			stk.pop();
+			int a = stk.top();
 			stk.pop();
 
 			switch (c)
@@ -45,7 +45,7 @@ int RPN::evaluate(const std::string& expression)
 				}
 				case '-':
 				{
-					stk.push(b - a);
+					stk.push(a - b);
 					break;
 				}
 				case '*':
